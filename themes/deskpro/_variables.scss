@@ -1,0 +1,49 @@
+// _variables.scss
+
+// Set your own variables here. These override
+// the defaults in themes/_defaults/_variables.scss.
+// For brevity, we don't repeat all supported variables here.
+// Copy the ones you want to change from defaults.scss
+// to here, and remove `!default` from each one.
+
+// Page setup
+// ----------
+
+$page-width: 21cm;
+$page-height: 29.7cm;
+$bleed: 0;
+$trim: 0;
+
+// Colours
+$color-accent: #4C4F50;
+$color-margings-top-background: #3A8DDE;
+
+
+// Set the content of headers and footers.
+// * For no content: normal
+// * For a page number: counter(page)
+// * For a phrase: "Any phrase in quotes"
+// * For an em space: "\2003"
+// * For other special characters, see CSS (ISO) at
+//   https://brajeshwar.github.io/entities/
+
+// Not yet supported by paged.js (https://gitlab.pagedmedia.org/tools/pagedjs/issues/44):
+// * For the title attribute of the last h1: string(h1-title, last)
+//   (increment to h2, h3, h4, h5, h6 as needed)
+//   By default, this uses the heading text, unless you
+//   manually set a title attribute for a given heading.
+// * For the last h1 (increment to h2, h3, h4, h5, h6 as needed): string(h1-text, last)
+//   Instead of last (last on page) you can also use
+//   first (first on page) or start (string set on previous page).
+
+// Verso (left-hand-page)
+$verso-top-right: 'Page ' counter(page)'/'counter(pages);
+$verso-top-left: string(book-title);
+$verso-top: string(h1-text);
+$verso-bottom: normal;
+
+// Recto (right-hand-page)
+$recto-top: string(h1-text);
+$recto-top-left: string(book-title);
+$recto-top-right: 'Page ' counter(page)'/'counter(pages);
+$recto-bottom: normal;

@@ -8,7 +8,8 @@ var themes = {
     template: 'Template',
     density: 'Density',
     beatrix: 'Beatrix',
-    plastered: 'Plastered'
+    plastered: 'Plastered',
+    deskpro: 'DeskPRO'
 };
 
 // Check for mathjax

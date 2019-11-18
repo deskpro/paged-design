@@ -1,0 +1,268 @@
+// _styles.scss
+
+// Add your own custom CSS or Sass styles here,
+// or import your own partials.
+// They will be included by main.scss,
+// after default/_styles.scss
+
+
+// _title-pages.scss
+// Half-title and title pages
+#{$page-toc} {
+    columns: 2;
+    column-gap: 2em;
+}
+
+
+#{$page-title-page} {
+    #{$title-page-title} {
+        color: $color-light;
+        font-size: $font-size-default * 5;
+        position: relative;
+        z-index: 1;
+        &:before {
+            content: "";
+            display: block;
+            background: $color-accent;
+            width: $page-width + ($bleed * 2);
+            position: absolute;
+            top: -($bleed + ($page-height / 2));
+            left: -($margin-inside + $bleed);
+            right: -($bleed);
+            bottom: -($line-height-default * 100);
+            z-index: -1; // see note below on pagedjs_page
+        }
+    }
+    #{$title-page-author} {
+        font-family: $font-display-main;
+        color: $color-text-main;
+        background-color: $color-light;
+        width: $page-width + ($bleed * 2) + 5mm; // the 2mm makes up for width we lose when we rotate
+        margin-left: -($margin-inside + $bleed) - 2.5mm;
+        position: relative;
+        z-index: 1;
+        &:before {
+            content: "";
+            display: block;
+            width: inherit;
+            height: $line-height-default * 1.5;
+            position: absolute;
+            background-color: inherit;
+            top: -$line-height-default;
+            z-index: -1;
+        }
+    }
+}
+
+// _page-margin-boxes.scss
+
+// Assign strings to use in headers and footers for each level of heading (h1-h6),
+// to be called by the header and footer variables ($verso-top-center etc.).
+// For each heading, we use the title attribute, with the heading text as fallback.
+// h1 also sets the string for h2, in case there is no h2 on the page yet.
+//
+// Note string-set lets us define multiple values, which can be used as fallbacks.
+// Like font-family settings, later strings are fallbacks for earlier strings:
+// the renderer will use the first valid option it sees.
+h1 {
+    string-set: h1-text content()
+}
+
+.title-page-version {
+    string-set: version content()
+}
+
+@mixin margins-top() {
+    background-color: #3A8DDE;
+    color: #FFFFFF;
+}
+
+@mixin margins-top-title() {
+    font-size: 180%;
+    background-image: url('images/top-left-icon.png');
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 17%;
+    padding-left: 2em;
+}
+
+@mixin margins-top-chapter() {
+    font-size: 150%;
+}
+
+@mixin margins-bottom-logo() {
+    background-image: url('images/logo.png');
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    content: normal;
+}
+
+@mixin margins-bottom-version() {
+    color: #8B9293;
+    content: string(version);
+}
+
+@page chapter {
+    @top-left-corner {
+        @include margins-top;
+    }
+    @top-left {
+        @include margins-top;
+        @include margins-top-title;
+    }
+    @top {
+        @include margins-top;
+        @include margins-top-chapter;
+    }
+    @top-right {
+        @include margins-top;
+    }
+    @top-right-corner {
+        @include margins-top;
+    }
+    @bottom-left {
+        @include margins-bottom-logo;
+    }
+    @bottom-right {
+        @include margins-bottom-version;
+    }
+}
+
+@page chapter:first {
+    @top-left-corner {
+        content: normal;
+        @include margins-top;
+    }
+    @top-left {
+        content: string(book-title);
+        @include margins-top;
+        @include margins-top-title;
+    }
+    @top {
+        content: string(h1-text);
+        @include margins-top;
+        @include margins-top-chapter;
+    }
+    @top-right {
+        content: $recto-top-right;
+        @include margins-top;
+    }
+    @top-right-corner {
+        content: normal;
+        @include margins-top;
+    }
+    @bottom-left {
+        @include margins-bottom-logo;
+    }
+    @bottom-right {
+        @include margins-bottom-version;
+    }
+}
+
+@page part {
+    @top-left-corner {
+        content: normal;
+        @include margins-top;
+    }
+    @top-left {
+        content: string(book-title);
+        @include margins-top;
+        @include margins-top-title;
+    }
+    @top {
+        content: normal;
+        @include margins-top;
+    }
+    @top-right {
+        content: normal;
+        @include margins-top;
+    }
+    @top-right-corner {
+        content: normal;
+        @include margins-top;
+    }
+    @bottom-left {
+        @include margins-bottom-logo;
+    }
+    @bottom-right {
+        @include margins-bottom-version;
+    }
+}
+
+@page toc {
+    @top-left-corner {
+        content: normal;
+        @include margins-top;
+    }
+    @top-left {
+        content: string(book-title);
+        @include margins-top;
+        @include margins-top-title;
+    }
+    @top {
+        content: string(h1-text);
+        @include margins-top;
+        @include margins-top-chapter;
+    }
+    @top-right {
+        content: normal;
+        @include margins-top;
+    }
+    @top-right-corner {
+        content: normal;
+        @include margins-top;
+    }
+    @bottom-left {
+        @include margins-bottom-logo;
+    }
+    @bottom-right {
+        @include margins-bottom-version;
+    }
+}
+
+// _page-chapter.scss
+#{$page-chapter} {
+    padding-top: 20px;
+}
+
+// _page-part.scss
+#{$page-part} {
+    padding-top: 20px;
+}
+
+// _page-toc.scss
+#{$page-toc} {
+    page: toc;
+
+    padding-top: 20px;
+
+    h1 {
+        display: none;
+    }
+}
+
+
+// TOC dots (doesn't work yet :( )
+#{$toc} {
+    overflow-x: hidden;
+    li:before {
+        float: left;
+        width: 0;
+        white-space: nowrap;
+        content:
+        ". . . . . . . . . . . . . . . . . . . . "
+        ". . . . . . . . . . . . . . . . . . . . "
+        ". . . . . . . . . . . . . . . . . . . . "
+        ". . . . . . . . . . . . . . . . . . . . "
+    }
+
+    li {
+        a::after {
+            padding-left: 0.33em;
+        }
+        span:first-child {
+            padding-right: 0.33em;
+        }
+    }
+}

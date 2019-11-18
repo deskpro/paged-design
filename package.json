@@ -16,7 +16,8 @@
     "runserver": "http-server -p 5000",
     "buildsite": "node js/build.js",
     "start": "npm-run-all --parallel buildcss buildsite runserver",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deskpro:pdf": "pagedjs-cli content/deskpro/index.html -o AdminGuide.pdf"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/electricbookworks/paged-design/issues"
   },
-  "homepage": "https://github.com/electricbookworks/paged-design#readme"
+  "homepage": "https://github.com/electricbookworks/paged-design#readme",
+  "dependencies": {
+    "pagedjs-cli": "0.0.9"
+  }
 }

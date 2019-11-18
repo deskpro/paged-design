@@ -1,3 +1,47 @@
+# DeskPRO README
+
+
+## DeskPRO theme and styles
+
+Folders:
+- content/deskpro
+- themes/deskpro
+
+
+## Setup
+```
+npm install
+```
+
+## Generate PDF
+
+1. Comment out pager.js included in html file `content/deskpro/index.html`
+
+```
+<!-- <script src="../../js/pager.js"></script> -->
+```
+2. Run
+```
+npm run deskpro:pdf
+```
+
+## View Generated PDF in browser to faster development and changes checking
+
+1. Include pager.js in html file `content/deskpro/index.html`
+```
+<script src="../../js/pager.js"></script>
+```
+
+2. Run
+```
+npm start
+```
+
+3. In Chrome go to http://localhost:5000/content/deskpro/index.html?theme=deskpro
+
+-------------------------------------------------------
+
+# Vendor README
 # Book designs for paged.js
 
 Customisable book designs created with [`paged.js`](https://gitlab.pagedmedia.org/tools/pagedjs).
