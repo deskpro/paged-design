@@ -25,7 +25,7 @@ npm install
 npm run deskpro:pdf
 ```
 
-## View Generated PDF in browser to faster development and changes checking
+## View PDF like version in browser to faster development and changes checking
 
 1. Include pager.js in html file `content/deskpro/index.html`
 ```
